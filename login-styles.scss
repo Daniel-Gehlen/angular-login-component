@@ -1,0 +1,66 @@
+/* login.component.scss */
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  padding: 20px;
+}
+
+.login-card {
+  background: white;
+  padding: 40px;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 400px;
+
+  h2 {
+    text-align: center;
+    margin-bottom: 30px;
+    color: #333;
+    font-weight: 500;
+  }
+}
+
+.form-field {
+  margin-bottom: 20px;
+  
+  mat-form-field {
+    width: 100%;
+  }
+}
+
+.password-strength-bar {
+  margin-top: 8px;
+  height: 4px;
+  border-radius: 2px;
+
+  &.weak {
+    ::ng-deep .mat-progress-bar-fill::after {
+      background-color: #f44336;
+    }
+  }
+
+  &.medium {
+    ::ng-deep .mat-progress-bar-fill::after {
+      background-color: #ffd740;
+    }
+  }
+
+  &.strong {
+    ::ng-deep .mat-progress-bar-fill::after {
+      background-color: #4caf50;
+    }
+  }
+}
+
+.generate-password-btn {
+  margin-bottom: 16px;
+  width: 100%;
+}
+
+.submit-btn {
+  width: 100%;
+}

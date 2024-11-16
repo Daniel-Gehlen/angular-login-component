@@ -1,0 +1,47 @@
+<!-- login.component.html -->
+<div class="login-container">
+  <div class="login-card">
+    <h2>Login</h2>
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+      <div class="form-field">
+        <mat-form-field appearance="outline">
+          <mat-label>Email</mat-label>
+          <input matInput formControlName="email" type="email" placeholder="seu@email.com">
+          <mat-error *ngIf="loginForm.get('email')?.hasError('required')">
+            Email é obrigatório
+          </mat-error>
+          <mat-error *ngIf="loginForm.get('email')?.hasError('email')">
+            Email inválido
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="form-field">
+        <mat-form-field appearance="outline">
+          <mat-label>Senha</mat-label>
+          <input matInput formControlName="password" [type]="hidePassword ? 'password' : 'text'" placeholder="Digite sua senha">
+          <button mat-icon-button matSuffix (click)="hidePassword = !hidePassword">
+            <mat-icon>{{hidePassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </button>
+          <mat-hint>Força da senha: {{passwordFeedback}}</mat-hint>
+        </mat-form-field>
+        
+        <mat-progress-bar mode="determinate" [value]="passwordStrength" class="password-strength-bar"
+          [ngClass]="{
+            'weak': passwordStrength < 40,
+            'medium': passwordStrength >= 40 && passwordStrength < 80,
+            'strong': passwordStrength >= 80
+          }">
+        </mat-progress-bar>
+      </div>
+
+      <button mat-stroked-button type="button" (click)="generateStrongPassword()" class="generate-password-btn">
+        Gerar senha forte
+      </button>
+
+      <button mat-raised-button color="primary" type="submit" [disabled]="!loginForm.valid" class="submit-btn">
+        Entrar
+      </button>
+    </form>
+  </div>
+</div>
